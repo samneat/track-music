@@ -6,6 +6,10 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 _Put or write the user story here. Add any clarifying notes you might have._
 
+As a user
+So that I can keep track of my music listening
+I want to add tracks I've listened to and see a list of them.
+
 ## 2. Design the Class Interface
 
 _Include the initializer, public properties, and public methods with all parameters, return values, and side-effects._
@@ -17,25 +21,25 @@ class Reminder:
     # User-facing properties:
     #   name: string
 
-    def __init__(self, name):
+    def __init__(self):
         # Parameters:
-        #   name: string
+        #   None
         # Side effects:
         #   Sets the name property of the self object
         pass # No code here yet
 
-    def remind_me_to(self, task):
+    def add(self, music):
         # Parameters:
-        #   task: string representing a single task
+        #   music: string representing a track
         # Returns:
         #   Nothing
         # Side-effects
-        #   Saves the task to the self object
+        #   Saves the music into playlist 
         pass # No code here yet
 
-    def remind(self):
+    def view(self):
         # Returns:
-        #   A string reminding the user to do the task
+        #   A list containing tracks you have listened to
         # Side-effects:
         #   Throws an exception if no task is set
         pass # No code here yet
@@ -49,27 +53,45 @@ _Make a list of examples of how the class will behave in different situations._
 # EXAMPLE
 
 """
-Given a name and a task
-#remind reminds the user to do the task
+Given a song
+will add song to playlist
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+playlist = Music()
+playlist.add("song_name")
+playlist.view() => ["song_name"]
 
 """
-Given a name and no task
-#remind raises an exception
+Tring to view empty playlist
+#view raises an exception
 """
-reminder = Reminder("Kay")
-reminder.remind() # raises an error with the message "No task set."
+playlist = Music()
+playlist.view() # raises an error with the message "No songs added yet."
 
 """
-Given a name and an empty task
-#remind still reminds the user to do the task, even though it looks odd
+Trying to add two songs
+both songs added to playlist
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+playlist = Music()
+playlist.add("song1")
+playlist.add("song2")
+plasylist.view() => ["song1", "song2"]
+
+"""
+when given a none string
+#raise error
+"""
+playlist = Music()
+playlist.add(song) => error message: you cant add a none string
+
+"""
+when giving already added song
+returns song already added
+"""
+playlist = Music()
+playlist.add('song1')
+playlist.add('song1') => song already added
+
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
